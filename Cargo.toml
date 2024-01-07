@@ -18,6 +18,7 @@ polars = { version = "0.36.2", features = ["strings", "dtype-date"], default-fea
 polars-time = { version = "0.36.2", features = ["timezones"], default-features = false }
 polars-ops = { version = "0.36.2", default-features = false }
 polars-arrow = { version = "0.36.2", default-features = false }
+holidays = {version = "*"}
 
 [target.'cfg(target_os = "linux")'.dependencies]
 jemallocator = { version = "0.5", features = ["disable_initial_exec_tls"] }

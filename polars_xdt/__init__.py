@@ -10,7 +10,7 @@ from polars.utils._parse_expr_input import parse_as_expression
 from polars.utils._wrap import wrap_expr
 from polars.utils.udfs import _get_shared_lib_location
 
-from polars_xdt.ranges import date_range
+from polars_xdt.ranges import date_range, holiday_range
 
 from ._internal import __version__
 
@@ -670,6 +670,7 @@ def workday_count(
 __all__ = [
     "col",
     "date_range",
+    "holiday_range",
     "workday_count",
     "__version__",
 ]
