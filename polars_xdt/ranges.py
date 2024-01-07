@@ -15,6 +15,13 @@ if TYPE_CHECKING:
     from polars.type_aliases import ClosedInterval, IntoExprColumn, TimeUnit
 
 
+class NotSupportedRangeError(Exception):
+    def __init__(self, start: int, end: int) -> None:
+        super().__init__(
+            f"Start: {start} and end: {end} should fall within 2000-2030."
+        )
+
+
 @overload
 def date_range(
     start: date | datetime | IntoExprColumn,
@@ -170,6 +177,9 @@ def date_range(  # noqa: PLR0913
 def holiday_range(
     start: int, end: int, countries: str | list[str]
 ) -> pl.Series | pl.Expr:
+    if start < 2000 or end > 2030:
+        raise NotSupportedRangeError(start, end)
+
     if isinstance(countries, str):
         countries = [countries]
     return pyo3_holiday_range(start, end, countries)
