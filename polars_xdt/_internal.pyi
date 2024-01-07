@@ -1,7 +1,4 @@
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    import polars as pl
+import polars as pl
 
 __version__: str
 

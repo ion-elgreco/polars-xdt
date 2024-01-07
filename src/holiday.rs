@@ -25,9 +25,9 @@ pub fn to_holiday_range(start: i32, end: i32, countries: Vec<String>) -> PolarsR
     for country in country_vec {
         match holiday_map.get(&country) {
             Some(map) => {
-                for (_, dates) in map {
-                    for (date, _) in dates {
-                        temp_vec.push(date.clone())
+                for dates in map.values() {
+                    for date in dates.keys() {
+                        temp_vec.push(*date)
                     }
                 }
             }

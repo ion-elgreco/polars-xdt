@@ -20,7 +20,9 @@ static ALLOC: Jemalloc = Jemalloc;
 
 #[pyfunction]
 fn holiday_range(start: i32, end: i32, countries: Vec<std::string::String>) -> PyResult<PySeries> {
-    let ser = holiday::to_holiday_range(start, end, countries).map_err(PyPolarsErr::from)?;
+    let ser = holiday::to_holiday_range(start, end, countries)
+        .map_err(PyPolarsErr::from)?
+        .sort(false);
     Ok(PySeries(ser))
 }
 

@@ -4,6 +4,7 @@ import re
 from typing import TYPE_CHECKING, Literal, Sequence, overload
 
 import polars as pl
+
 from ._internal import holiday_range as pyo3_holiday_range
 
 mapping = {"Mon": 1, "Tue": 2, "Wed": 3, "Thu": 4, "Fri": 5, "Sat": 6, "Sun": 7}
@@ -167,7 +168,7 @@ def date_range(  # noqa: PLR0913
 
 
 def holiday_range(
-    start: int, end: int, countries: str | list[str], eager=True
+    start: int, end: int, countries: str | list[str]
 ) -> pl.Series | pl.Expr:
     if isinstance(countries, str):
         countries = [countries]
